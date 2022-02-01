@@ -1,0 +1,31 @@
+<h3 class="text-primary" >Buscar por región
+    <h3></h3>
+  <p *ngIf="regionActiva.codigo != ''"
+          class="h6 text-secondary">
+    {{regionActiva.codigo| titlecase}} - {{regionActiva.desc| titlecase}}
+</p>
+</h3>
+<hr>
+<h5>Seleccione la región</h5>
+<div class="row animate__animated animate__bounce animate__faster">
+  <div class="col">
+
+    <!-- Forma 1 -->
+    <!-- [class.btn-primary] = "continente == continenteActivo " -->
+
+    <!-- Forma 2 -->
+    <!-- [ngClass] = "{
+            'btn-primary': continenteActivo === continente,
+            'btn-outline-primary': continenteActivo!== continente
+        }" -->
+
+    <button *ngFor="let region of regiones" class="btn btn-outline-primary btn-sm" (click)="activarRegion (region)">
+      {{region.codigo | titlecase}}({{region.desc | titlecase}})
+    </button>
+  </div>
+  <div *ngIf="paisesPorRegion.length" class="row">
+    <div class="col">
+       <app-pais-tabla [paises] = "paisesPorRegion" ></app-pais-tabla>
+    </div>
+  </div>
+</div>
